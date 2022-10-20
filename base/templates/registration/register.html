@@ -1,0 +1,8 @@
+<h2>Welcome to Secure Chat</h2>
+<h3>Create a new account</h3>
+<form method="POST" action="">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <input type="submit" name="Create User">
+</form>

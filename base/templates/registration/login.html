@@ -1,0 +1,9 @@
+<h2>Welcome to Secure Chat</h2>
+<h3>Please log in to your account</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+
+Or create a <a href="/register/">new account</a>

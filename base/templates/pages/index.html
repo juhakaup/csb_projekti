@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Secure Chat</title>
+    </head>
+
+    <body>
+		<h1>Secure Chat</h1>
+
+		Logged in as: <b>{{user.username}}</b> 
+
+    <form action='logout/' method="POST">
+			{% csrf_token %}
+      <input type="submit" value="Logout"/>
+    </form>
+
+    
+
+    {% for contact, messages in notesByContact.items %}
+    <hr>
+      <h3>Messages with {{contact}}</h3>
+        {% for note in messages %}
+          From <b>{{note.sender}}</b> to <b>{{note.receiver}}</b> on {{note.created_at}} <a href="/delete/?id={{note.id}}">Delete message</a> <br>
+          <p>&emsp; {{note.content | safe}}</p>
+        {% endfor %}
+    {% endfor %}
+
+    <hr>
+    <h3>Send a message</h3>
+    <form action='add/' method="GET" id="noteForm">
+      To: <select name="to">
+      {% for user in users %}
+          <option value="{{user.username}}">{{user.username}}</option>
+      {% endfor %}
+      </select><br/>
+      <br>
+      <textarea rows="1" cols="50" name="content" form="noteForm">type a message here...</textarea>
+      <br>
+      <input type="submit" value="Send"/>
+    </form>
+
+    </body>
+
+
+    </body>
+</html>
