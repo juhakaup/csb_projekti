@@ -20,7 +20,8 @@
     <hr>
       <h3>Messages with {{contact}}</h3>
         {% for note in messages %}
-          From <b>{{note.sender}}</b> to <b>{{note.receiver}}</b> on {{note.created_at}} <a href="/delete/?id={{note.id}}">Delete message</a> <br>
+          From <b>{{note.sender}}</b> to <b>{{note.receiver}}</b> on {{note.created_at}} 
+          {% if user.username == note.receiver.username %} <a href="/delete/?id={{note.id}}">Delete message</a> {% endif %}
           <p>&emsp; {{note.content | safe}}</p>
         {% endfor %}
     {% endfor %}

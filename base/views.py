@@ -40,7 +40,8 @@ def addNote(request):
   try:
     connection = sqlite3.connect('db.sqlite3')
     dateString = f"{now().date()} {now().time()}"
-    query = f"INSERT INTO base_note(sender_id, receiver_id, content, created_at, readByReceiver) VALUES ({sender.id}, {receiver.id}, '{content}', '{dateString}', 0)"
+    query = f"INSERT INTO base_note(sender_id, receiver_id, created_at, readByReceiver, content) VALUES ({sender.id}, {receiver.id}, '{dateString}', 0, '{content}')"
+    print(query)
     crsr = connection.cursor()
     crsr.executescript(query)
     connection.commit()
@@ -49,10 +50,23 @@ def addNote(request):
 
   return redirect('/')
 
+@login_required
 def deleteNote(request):
   note_id = request.GET.get('id')
   Note.objects.filter(id=note_id).delete()
   return redirect('/')
+
+# @login_required
+# def deleteNote(request):
+#   user = User.objects.get(username = request.user)
+#   note_id = request.GET.get('id')
+#   notes = Note.objects.filter(id=note_id)
+#   if len(notes) == 0:
+#     return redirect('/')
+#   note = notes[0]
+#   if note.receiver == user:
+#     note.delete()
+#   return redirect('/')
 
 def registerUser(request):
   if request.method == 'POST':
