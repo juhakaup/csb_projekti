@@ -23,6 +23,7 @@
           From <b>{{note.sender}}</b> to <b>{{note.receiver}}</b> on {{note.created_at}} 
           {% if user.username == note.receiver.username %} <a href="/delete/?id={{note.id}}">Delete message</a> {% endif %}
           <p>&emsp; {{note.content | safe}}</p>
+          <!-- <p>&emsp; {{note.content}}</p> -->
         {% endfor %}
     {% endfor %}
 
