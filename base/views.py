@@ -49,6 +49,7 @@ def addNote(request):
 
   return redirect('/')
 
+# @login_required
 # def addNote(request):
 #   if request.method == 'POST':
 #     sender = User.objects.get(username = request.user)
