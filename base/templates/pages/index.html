@@ -41,6 +41,19 @@
       <input type="submit" value="Send"/>
     </form>
 
+    <!-- <form action='add/' method="POST" id="noteForm">
+      {% csrf_token %}
+      To: <select name="to">
+      {% for user in users %}
+          <option value="{{user.username}}">{{user.username}}</option>
+      {% endfor %}
+      </select><br/>
+      <br>
+      <textarea rows="1" cols="50" name="content" form="noteForm">type a message here...</textarea>
+      <br>
+      <input type="submit" value="Send"/>
+    </form> -->
+
     </body>
 
 

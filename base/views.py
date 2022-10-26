@@ -27,7 +27,7 @@ def homePage(request):
   content ={'users': users, 'notesByContact' : notesByContact}
   return render(request, 'pages/index.html', content)
 
-
+@login_required
 def addNote(request):
   sender = User.objects.get(username = request.user)
   receiver = User.objects.get(username=request.GET.get('to'))
@@ -48,6 +48,14 @@ def addNote(request):
     print("Database error", error)
 
   return redirect('/')
+
+# def addNote(request):
+#   if request.method == 'POST':
+#     sender = User.objects.get(username = request.user)
+#     receiver = User.objects.get(username=request.POST.get('to'))
+#     content = request.POST.get('content')
+#     Note.objects.create(sender=sender, receiver=receiver, content=content)
+#   return redirect('/')
 
 @login_required
 def deleteNote(request):
